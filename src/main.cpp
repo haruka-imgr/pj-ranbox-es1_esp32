@@ -66,11 +66,43 @@ void loop() {
   client.loop();
 }
 */
+
+#define LED_GREEN_PIN (25)
+#define LED_RED_PIN (14)
+#define SW1_PIN (26)
+#define SW2_PIN (15)
+
 void setup() {
   Serial.begin(115200); // Initialize serial port
+  pinMode(LED_GREEN_PIN, OUTPUT);
+  pinMode(LED_RED_PIN, OUTPUT);
+  pinMode(SW1_PIN, INPUT);
+  pinMode(SW2_PIN, INPUT);
+  digitalWrite(LED_GREEN_PIN, LOW);
+  digitalWrite(LED_RED_PIN, LOW);
 }
 
 void loop() {
   Serial.println("Hello, World!");
+  // digitalWrite(LED_GREEN_PIN, HIGH);
+  //digitalWrite(LED_RED_PIN, HIGH);
+  //  delay(1000);
+  // Serial.println("Hello, World!");
+  // digitalWrite(LED_GREEN_PIN, LOW);
+  // digitalWrite(LED_RED_PIN, LOW);
+  if(digitalRead(SW1_PIN) == HIGH) {
+    digitalWrite(LED_GREEN_PIN, HIGH);
+  } else {
+    digitalWrite(LED_GREEN_PIN, LOW);
+  }
+  if(digitalRead(SW2_PIN) == HIGH) {
+    digitalWrite(LED_RED_PIN, HIGH);
+  } else {
+    digitalWrite(LED_RED_PIN, LOW);
+  }
+  Serial.print("SW1: ");
+  Serial.print(digitalRead(SW1_PIN));
+  Serial.print(", SW2: ");
+  Serial.println(digitalRead(SW2_PIN));
   delay(1000);
 }
